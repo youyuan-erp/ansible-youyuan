@@ -22,7 +22,7 @@ spec:
               serviceName: kanban
               servicePort: 80
             path: "{{ kanban_path }}"
-    - host: "admin.{{ domain }}"
+    - host: "{{ admin_path }}.{{ domain }}"
       http:
         paths:
           - backend:

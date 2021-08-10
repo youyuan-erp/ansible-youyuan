@@ -61,7 +61,7 @@ kanban_path: /kanban/v0
 kanban_mongodb_connection: "{{ mongodb_connection }}/kanban?authSource=admin"
 
 sequence_version: latest
-sequence_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-sequence:{{ kanban_version }}"
+sequence_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-sequence:{{ sequence_version }}"
 sequence_time: 20210804120000
 sequence_port: "80"
 sequence_path: /sequence/v0

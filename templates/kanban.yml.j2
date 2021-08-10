@@ -45,7 +45,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: kanban
-          image: "{{ content_time }}"
+          image: "{{ kanban_image }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ kanban_time }}"
