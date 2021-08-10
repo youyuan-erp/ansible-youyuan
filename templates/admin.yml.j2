@@ -1,0 +1,85 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  labels:
+    app: admin
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: admin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin
+  labels:
+    app: admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: admin
+          image: "{{ admin_image }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ admin_time }}"
+            - name: REACT_APP_AUTH_BASE
+              value: "{{ admin_auth_path }}"
+            - name: REACT_APP_CORE_BASE
+              value: "{{ admin_core_path }}"
+            - name: REACT_APP_KANBAN_BASE
+              value: "{{ admin_kanban_path }}"
+            - name: REACT_APP_SCOPE
+              value: "{{ admin_scope }}"
+            - name: REACT_APP_PROVIDER
+              value: "{{ admin_provider }}"
+            - name: REACT_APP_IMPORT_VEHICLE_PROJECT
+              value: "{{ admin_import_vehicle_project }}"
+            - name: REACT_APP_REPAIR_PROJECT
+              value: "{{ admin_repair_project }}"
+            - name: REACT_APP_MAINTAIN_PROJECT
+              value: "{{ admin_maintain_project }}"
+            - name: REACT_APP_REPAIR_REJECTED_TIMEOUT
+              value: "{{ admin_repair_rejected_timeout }}"
+            - name: REACT_APP_MAINTAIN_SHOW_INTERVAL
+              value: "{{ admin_maintain_show_interval }}"
+            - name: REACT_APP_REPAIR_SIGN_TIMEOUT
+              value: "{{ admin_repair_sign_timeout }}"
+            - name: REACT_APP_REPAIR_LARGE_TIME
+              value: "{{ admin_repair_large_time }}"
+            - name: REACT_APP_REPAIR_MIDDLE_TIME
+              value: "{{ admin_repair_middle_time }}"
+            - name: REACT_APP_REPAIR_SMALL_TIME
+              value: "{{ admin_repair_small_time }}"
+            - name: REACT_APP_TICKET_AUDIT_TIMEOUT
+              value: "{{ admin_ticket_audit_timeout }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

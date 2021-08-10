@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core
+  labels:
+    app: core
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: core
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+  labels:
+    app: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: core
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: core
+          image: "{{ core_image }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ core_time }}"
+            - name: PORT
+              value: "{{ core_port }}"
+            - name: BASE
+              value: "{{ core_path }}"
+            - name: MONGODB_CONNECTION
+              value: "{{ core_mongodb_connection }}"
+            - name: SEQUENCE_SERVICE_URL
+              value: "{{ core_sequence_path }}"
+            - name: BUS_OP_ENDPOINT_BASE
+              value: "{{ core_bus_op_path }}"
+            - name: TICKET_AUDIT_TIMEOUT
+              value: "{{ core_ticket_audit_timeout }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

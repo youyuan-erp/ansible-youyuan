@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: core-daemon
+  labels:
+    app: core-daemon
+spec:
+  selector:
+    matchLabels:
+      app: core-daemon
+  serviceName: "core-daemon-svc"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: core-daemon
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: core-daemon
+          image: "{{ core_daemon_image }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ core_daemon_time }}"
+            - name: MONGODB_CONNECTION
+              value: "{{ core_daemon_mongodb_connection }}"
+            - name: KAFKA_BROKER_LIST
+              value: "{{ core_daemon_kafka_broker_list }}"
+            - name: KAFKA_GROUP_ID
+              value: "{{ core_daemon_kafka_group_id }}"
+            - name: KAFKA_EVENT_TOPIC
+              value: "{{ core_daemon_kafka_topic }}"
+            - name: KAFKA_HBINTERVAL_MS
+              value: "{{ core_daemon_kafka_hbinterval_ms }}"
+            - name: YOUYUAN_CORE_URL
+              value: "{{ core_daemon_core_path }}"
+            - name: DAEMON_TOKEN
+              value: "{{ core_daemon_token }}"
+          command: ["npm"]
+          args: ["run", "daemon"]
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

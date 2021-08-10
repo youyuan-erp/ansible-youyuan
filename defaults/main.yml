@@ -1,0 +1,68 @@
+---
+# defaults file for youyuan
+namespace: youyuan
+state: present
+
+youyuan_state: "{{ state }}"
+youyuan_namespace: "{{ namespace }}"
+
+ingress_name: youyuan
+domain: youyuan.36node.com
+
+mongodb_connection: mongodb://root:it_is_a_secret@mongodb
+
+core_version: latest
+core_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-core:{{ core_version }}"
+core_time: 20210804120000
+core_port: "80"
+core_path: /core/v0
+core_mongodb_connection: "{{ mongodb_connection }}/core?authSource=admin"
+core_sequence_path: http://sequence/sequence/v0
+core_bus_op_path: https://api.jiushi.36node.com/op/v0/
+core_ticket_audit_timeout: 36h
+
+admin_version: latest
+admin_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-admin:{{ admin_version }}"
+admin_time: 20210804120000
+admin_auth_path: https://api.stargate.36node.com/auth/v1
+admin_core_path: https://api.youyuan.36node.com/core/v0
+admin_kanban_path: https://api.youyuan.36node.com/kanban/v0
+admin_scope: youyuan
+admin_provider: 608228336158ae0011602c7a
+admin_import_vehicle_project: 5fd77ec40f4b28001109d65c
+admin_repair_project: 5fd77ec40f4b28001109d661
+admin_maintain_project: 5fd77ec50f4b28001109d667
+admin_repair_rejected_timeout: 8h
+admin_maintain_show_interval: "1"
+admin_repair_sign_timeout: "30"
+admin_repair_large_time: "6"
+admin_repair_middle_time: "4"
+admin_repair_small_time: "2"
+admin_ticket_audit_timeout: 36h
+
+core_daemon_version: latest
+core_daemon_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-core:{{ core_daemon_version }}"
+core_daemon_time: 20210804120000
+core_daemon_mongodb_connection: "{{ mongodb_connection }}/core?authSource=admin"
+core_daemon_kafka_broker_list: kafka.avatar:9092
+core_daemon_kafka_group_id: youyuan-daemon
+core_daemon_kafka_topic: youyuan
+core_daemon_kafka_hbinterval_ms: "3000"
+core_daemon_core_path: https://api.youyuan.36node.com/core/v0
+core_daemon_token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkYWVtb24iLCJucyI6InlvdXl1YW4iLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVJNQU5BR0VSIl0sInVzZXIiOiJkYWVtb24tYWRtaW4iLCJhY3RpdmUiOnRydWUsImlhdCI6OTYwNzg2MTY3NSwiZXhwIjo5NjA3OTQ4MDc1fQ.Kc4I8yobMCdNMnzfw8eKzmz-8lMq1xNqwhB5gEc9YbeyCjCqQhd99q3dvrnOiuURjQzIwSmAuZOZoLIT6xtkJnF8mCAwCDk0EoMtFaM8ljydvDegEPQ-WG9Yz6FsSQAyW5t1lNtTNwMh46rLQ2-YKnLRrAdABMHpHSa7W1nGYYs
+
+kanban_version: latest
+kanban_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-kanban:{{ kanban_version }}"
+kanban_time: 20210804120000
+kanban_vector_enabled: "true"
+kanban_vector_topic: youyuan
+kanban_port: "80"
+kanban_path: /kanban/v0
+kanban_mongodb_connection: "{{ mongodb_connection }}/kanban?authSource=admin"
+
+sequence_version: latest
+sequence_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-sequence:{{ kanban_version }}"
+sequence_time: 20210804120000
+sequence_port: "80"
+sequence_path: /sequence/v0
+sequence_mongodb_connection: "{{ mongodb_connection }}/sequence?authSource=admin"

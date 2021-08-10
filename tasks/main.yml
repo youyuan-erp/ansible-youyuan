@@ -1,0 +1,23 @@
+---
+# tasks file for youyuan
+- name: Namespace for youyuan
+  community.kubernetes.k8s:
+    state: "{{ youyuan_state }}"
+    name: "{{ youyuan_namespace }}"
+    api_version: v1
+    kind: Namespace
+
+- name: youyuan service
+  community.kubernetes.k8s:
+    state: "{{ youyuan_state }}"
+    namespace: "{{ youyuan_namespace }}"
+    template: "{{ item }}"
+  with_items:
+    - admin.yml.j2
+    - core-daemon.yml.j2
+    - core.yml.j2
+    - kanban.yml.j2
+    - sequence.yml.j2
+    - ingress.yml.j2
+  tags:
+    - youyuan
