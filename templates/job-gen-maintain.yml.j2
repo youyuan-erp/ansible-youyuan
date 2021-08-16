@@ -1,0 +1,42 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: job-gen-maintain
+  labels:
+    app: job-gen-maintain
+spec:
+  schedule: "1 0 * * *" # 每天0点1分执行一次
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: job-gen-maintain
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: job-gen-maintain
+              image: "{{ core_image }}"
+              env:
+                - name: MONGODB_CONNECTION
+                  value: "{{ job_gen_maintain_mongodb_connection }}"
+                - name: KANBAN_URL
+                  value: "{{ job_gen_maintain_kanban_url }}"
+                - name: MAINTAIN_PROJECT
+                  value: "{{ job_gen_maintain_project }}"
+                - name: MAINTAIN_CREATE_LANE
+                  value: "{{ job_gen_maintain_create_lane }}"
+                - name: ROBOT_TOKEN
+                  value: "{{ job_gen_maintain_token }}"
+              command: ["npm"]
+              args: ["run", "generate"]
+              resources:
+                limits:
+                  cpu: "500m"
+                  memory: "512Mi"
+                requests:
+                  cpu: "10m"
+                  memory: "32Mi"

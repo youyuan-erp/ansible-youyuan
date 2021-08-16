@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: job-gen-maintain-report
+  labels:
+    app: job-gen-maintain-report
+spec:
+  schedule: "1 1 * * *" # 每天1点1分执行一次
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: job-gen-maintain-report
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: job-gen-maintain-report
+              image: "{{ core_image }}"
+              env:
+                - name: MONGODB_CONNECTION
+                  value: "{{ job_gen_maintain_report_mongodb_connection }}"
+                - name: AUTH_NAMESPACE
+                  value: "{{ job_gen_maintain_report_auth_ns }}"
+                - name: AUTH_TOKEN
+                  value: "{{ job_gen_maintain_report_auth_token }}"
+                - name: AUTH_URL
+                  value: "{{ job_gen_maintain_report_auth_url }}"
+
+              command: ["npm"]
+              args: ["run", "gen:maintain-report"]
+              resources:
+                limits:
+                  cpu: "500m"
+                  memory: "512Mi"
+                requests:
+                  cpu: "10m"
+                  memory: "32Mi"

@@ -19,5 +19,7 @@
     - kanban.yml.j2
     - sequence.yml.j2
     - ingress.yml.j2
+    - job-gen-maintain-report.yml.j2
+    - job-gen-maintain.yml.j2
   tags:
     - youyuan

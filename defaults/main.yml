@@ -43,7 +43,7 @@ admin_ticket_audit_timeout: 36h
 core_daemon_version: latest
 core_daemon_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-core:{{ core_daemon_version }}"
 core_daemon_time: 20210804120000
-core_daemon_mongodb_connection: "{{ mongodb_connection }}/core?authSource=admin"
+core_daemon_mongodb_connection: "{{ core_mongodb_connection }}"
 core_daemon_kafka_broker_list: kafka.avatar:9092
 core_daemon_kafka_group_id: youyuan-daemon
 core_daemon_kafka_topic: youyuan
@@ -66,3 +66,14 @@ sequence_time: 20210804120000
 sequence_port: "80"
 sequence_path: /sequence/v0
 sequence_mongodb_connection: "{{ mongodb_connection }}/sequence?authSource=admin"
+
+job_gen_maintain_mongodb_connection: "{{ core_mongodb_connection }}"
+job_gen_maintain_kanban_url: "https://api.youyuan.36node.com/kanban/v0"
+job_gen_maintain_project: 5fd77ec50f4b28001109d667
+job_gen_maintain_create_lane: 5fe5ff8b93e42d00116eb282
+job_gen_maintain_token: "{{ core_daemon_token }}"
+
+job_gen_maintain_report_mongodb_connection: "{{ core_mongodb_connection }}"
+job_gen_maintain_report_auth_ns: youyuan
+job_gen_maintain_report_auth_token: "{{ core_daemon_token }}"
+job_gen_maintain_report_auth_url: https://api.stargate.36node.com/auth/v1"
