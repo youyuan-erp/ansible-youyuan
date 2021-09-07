@@ -20,6 +20,7 @@ spec:
       containers:
         - name: core-daemon
           image: "{{ core_daemon_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ core_daemon_time }}"

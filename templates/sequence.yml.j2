@@ -40,6 +40,7 @@ spec:
       containers:
         - name: sequence
           image: "{{ sequence_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ sequence_time }}"

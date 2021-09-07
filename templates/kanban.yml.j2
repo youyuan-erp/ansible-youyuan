@@ -46,6 +46,7 @@ spec:
       containers:
         - name: kanban
           image: "{{ kanban_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ kanban_time }}"

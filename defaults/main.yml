@@ -2,6 +2,7 @@
 # defaults file for youyuan
 namespace: youyuan
 state: present
+image_pull_policy: Always
 
 youyuan_state: "{{ state }}"
 youyuan_namespace: "{{ namespace }}"
