@@ -29,6 +29,8 @@ spec:
                   value: "{{ job_gen_maintain_report_auth_token }}"
                 - name: AUTH_URL
                   value: "{{ job_gen_maintain_report_auth_url }}"
+                - name: OSS_BUCKET
+                  value: "{{ job_gen_maintain_report_oss_bucket }}"
 
               command: ["npm"]
               args: ["run", "gen:maintain-report"]

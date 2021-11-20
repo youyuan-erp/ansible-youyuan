@@ -30,6 +30,7 @@ admin_core_path: https://api.youyuan.36node.com/core/v0
 admin_kanban_path: https://api.youyuan.36node.com/kanban/v0
 admin_scope: youyuan
 admin_provider: 608228336158ae0011602c7a
+admin_oss_bucket: youyuan-erp
 admin_import_vehicle_project: 5fd77ec40f4b28001109d65c
 admin_repair_project: 5fd77ec40f4b28001109d661
 admin_maintain_project: 5fd77ec50f4b28001109d667
@@ -78,3 +79,4 @@ job_gen_maintain_report_mongodb_connection: "{{ core_mongodb_connection }}"
 job_gen_maintain_report_auth_ns: youyuan
 job_gen_maintain_report_auth_token: "{{ core_daemon_token }}"
 job_gen_maintain_report_auth_url: https://api.stargate.36node.com/auth/v1"
+job_gen_maintain_report_oss_bucket: youyuan-erp
