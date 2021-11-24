@@ -31,6 +31,8 @@ spec:
                   value: "{{ job_gen_maintain_report_auth_url }}"
                 - name: OSS_BUCKET
                   value: "{{ job_gen_maintain_report_oss_bucket }}"
+                - name: MAINTAIN_REPORT_PREFIX
+                  value: "{{ job_gen_maintain_report_prefix }}"
 
               command: ["npm"]
               args: ["run", "gen:maintain-report"]
