@@ -35,7 +35,7 @@ admin_import_vehicle_project: 5fd77ec40f4b28001109d65c
 admin_repair_project: 5fd77ec40f4b28001109d661
 admin_maintain_project: 5fd77ec50f4b28001109d667
 admin_repair_rejected_timeout: 8h
-admin_maintain_show_interval: "1"
+admin_maintain_show_interval_int: "1"
 admin_repair_sign_timeout: "30"
 admin_repair_large_time: "6"
 admin_repair_middle_time: "4"
