@@ -30,7 +30,6 @@ admin_core_path: https://api.youyuan.36node.com/core/v0
 admin_kanban_path: https://api.youyuan.36node.com/kanban/v0
 admin_scope: youyuan
 admin_provider: 608228336158ae0011602c7a
-admin_oss_bucket: youyuan-erp
 admin_import_vehicle_project: 5fd77ec40f4b28001109d65c
 admin_repair_project: 5fd77ec40f4b28001109d661
 admin_maintain_project: 5fd77ec50f4b28001109d667
@@ -41,6 +40,12 @@ admin_repair_large_time: "6"
 admin_repair_middle_time: "4"
 admin_repair_small_time: "2"
 admin_ticket_audit_timeout: 36h
+admin_oss_region: cn
+admin_oss_endpoint: https://oos-cn.ctyunapi.cn
+admin_oss_bucket: uat
+admin_oss_url: https://uat.oos-cn.ctyunapi.cn
+admin_oss_key_id:
+admin_oss_key_secret:
 
 core_daemon_version: latest
 core_daemon_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-core:{{ core_daemon_version }}"
@@ -79,4 +84,9 @@ job_gen_maintain_report_mongodb_connection: "{{ core_mongodb_connection }}"
 job_gen_maintain_report_auth_ns: youyuan
 job_gen_maintain_report_auth_token: "{{ core_daemon_token }}"
 job_gen_maintain_report_auth_url: https://api.stargate.36node.com/auth/v1"
-job_gen_maintain_report_oss_bucket: youyuan-erp
+job_gen_maintain_report_oss_region: cn
+job_gen_maintain_report_oss_endpoint: https://oos-cn.ctyunapi.cn
+job_gen_maintain_report_oss_bucket: uat
+job_gen_maintain_report_oss_url: https://uat.oos-cn.ctyunapi.cn
+job_gen_maintain_report_oss_key_id:
+job_gen_maintain_report_oss_key_secret:

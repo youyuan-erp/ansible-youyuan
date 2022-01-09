@@ -54,8 +54,6 @@ spec:
               value: "{{ admin_scope }}"
             - name: REACT_APP_PROVIDER
               value: "{{ admin_provider }}"
-            - name: REACT_APP_OSS_BUCKET
-              value: "{{ admin_oss_bucket }}"
             - name: REACT_APP_IMPORT_VEHICLE_PROJECT
               value: "{{ admin_import_vehicle_project }}"
             - name: REACT_APP_REPAIR_PROJECT
@@ -76,6 +74,18 @@ spec:
               value: "{{ admin_repair_small_time }}"
             - name: REACT_APP_TICKET_AUDIT_TIMEOUT
               value: "{{ admin_ticket_audit_timeout }}"
+            - name: REACT_APP_OSS_REGION
+              value: "{{ admin_oss_region }}"
+            - name: REACT_APP_OSS_ENDPOINT
+              value: "{{ admin_oss_endpoint }}"
+            - name: REACT_APP_OSS_BUCKET
+              value: "{{ admin_oss_bucket }}"
+            - name: REACT_APP_OSS_URL
+              value: "{{ admin_oss_url}}"
+            - name: REACT_APP_OSS_ACCESS_KEY_ID
+              value: "{{ admin_oss_key_id }}"
+            - name: REACT_APP_OSS_ACCESS_KEY_SECRET
+              value: "{{ admin_oss_key_secret }}"
           ports:
             - name: http
               containerPort: 80
