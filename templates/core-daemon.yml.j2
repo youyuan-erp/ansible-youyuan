@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -15,6 +16,11 @@ spec:
     metadata:
       labels:
         app: core-daemon
+        name: core-daemon
+        vector.dev/enable: "{{ core_daemon_vector_enabled }}"
+        {% if core_daemon_vector_topic %}
+        vector.dev/topic: "{{ core_daemon_vector_topic }}"
+        {% endif %}
     spec:
       restartPolicy: Always
       containers:
@@ -38,6 +44,10 @@ spec:
               value: "{{ core_daemon_core_path }}"
             - name: DAEMON_TOKEN
               value: "{{ core_daemon_token }}"
+            - name: DAEMON_ERR_TIMES_INT
+              value: "{{ core_daemon_err_times_int }}"
+            - name: FEISHU_WEBHOOK_URL
+              value: "{{ core_daemon_feishu_webhook_url }}"
           command: ["npm"]
           args: ["run", "daemon"]
           resources:

@@ -57,6 +57,10 @@ core_daemon_kafka_topic: youyuan
 core_daemon_kafka_hbinterval_ms: "3000"
 core_daemon_core_path: https://api.youyuan.36node.com/core/v0
 core_daemon_token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkYWVtb24iLCJucyI6InlvdXl1YW4iLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVJNQU5BR0VSIl0sInVzZXIiOiJkYWVtb24tYWRtaW4iLCJhY3RpdmUiOnRydWUsImlhdCI6OTYwNzg2MTY3NSwiZXhwIjo5NjA3OTQ4MDc1fQ.Kc4I8yobMCdNMnzfw8eKzmz-8lMq1xNqwhB5gEc9YbeyCjCqQhd99q3dvrnOiuURjQzIwSmAuZOZoLIT6xtkJnF8mCAwCDk0EoMtFaM8ljydvDegEPQ-WG9Yz6FsSQAyW5t1lNtTNwMh46rLQ2-YKnLRrAdABMHpHSa7W1nGYYs
+core_daemon_vector_enabled: "true"
+core_daemon_vector_topic: youyuan
+core_daemon_err_times_int: "3"
+core_daemon_feishu_webhook_url:
 
 kanban_version: latest
 kanban_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-kanban:{{ kanban_version }}"
