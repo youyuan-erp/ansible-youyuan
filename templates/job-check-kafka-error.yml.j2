@@ -1,0 +1,40 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: job-check-kafka-error
+  labels:
+    app: job-check-kafka-error
+spec:
+  schedule: "1 12 * * *" # 每天12点1分执行一次
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: job-check-kafka-error
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: job-check-kafka-error
+              image: "{{ core_image }}"
+              env:
+                - name: MONGODB_CONNECTION
+                  value: "{{ job_check_kafka_error_mongodb_connection }}"
+                - name: KANBAN_URL
+                  value: "{{ job_check_kafka_error_kanban_url }}"
+                - name: ROBOT_TOKEN
+                  value: "{{ job_check_kafka_error_token }}"
+                - name: FEISHU_WEBHOOK_URL
+                  value: "{{ job_check_kafka_error_feishu_webhook_url }}"
+              command: ["npm"]
+              args: ["run", "check"]
+              resources:
+                limits:
+                  cpu: "500m"
+                  memory: "512Mi"
+                requests:
+                  cpu: "10m"
+                  memory: "32Mi"

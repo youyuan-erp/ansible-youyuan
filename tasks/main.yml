@@ -21,5 +21,6 @@
     - ingress.yml.j2
     - job-gen-maintain-report.yml.j2
     - job-gen-maintain.yml.j2
+    - job-check-kafka-error.yml.j2
   tags:
     - youyuan

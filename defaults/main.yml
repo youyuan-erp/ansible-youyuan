@@ -94,3 +94,8 @@ job_gen_maintain_report_oss_bucket: uat
 job_gen_maintain_report_oss_url: https://uat.oos-cn.ctyunapi.cn
 job_gen_maintain_report_oss_key_id:
 job_gen_maintain_report_oss_key_secret:
+
+job_check_kafka_error_mongodb_connection: "{{ core_mongodb_connection }}"
+job_check_kafka_error_kanban_url: "https://api.youyuan.36node.com/kanban/v0"
+job_check_kafka_error_token: "{{ core_daemon_token }}"
+job_check_kafka_error_feishu_webhook_url:
