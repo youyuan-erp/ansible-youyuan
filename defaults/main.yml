@@ -15,6 +15,7 @@ mongodb_connection: mongodb://root:it_is_a_secret@mongodb
 core_version: latest
 core_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-core:{{ core_version }}"
 core_time: 20210804120000
+core_replicas: 1
 core_port: "80"
 core_path: /core/v0
 core_mongodb_connection: "{{ mongodb_connection }}/core?authSource=admin"
@@ -65,6 +66,7 @@ core_daemon_feishu_webhook_url:
 kanban_version: latest
 kanban_image: "registry.cn-beijing.aliyuncs.com/36node/youyuan-kanban:{{ kanban_version }}"
 kanban_time: 20210804120000
+kanban_replicas: 1
 kanban_vector_enabled: "true"
 kanban_vector_topic: youyuan
 kanban_port: "80"
